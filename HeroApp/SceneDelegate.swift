@@ -53,7 +53,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-    func setUpRootView() -> RootNavigationController {
+    private func setUpRootView() -> RootNavigationController {
         let rootViewController = RootViewController()
         let rootNavigationController = RootNavigationController()
 
