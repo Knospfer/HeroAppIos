@@ -12,9 +12,27 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
+        addButton()
         // Do any additional setup after loading the view.
     }
     
+    private func addButton(){
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.setTitle("To Detail", for: .normal)
+        button.setTitleColor(.orange, for: .normal)
+        button.backgroundColor = .green
+        view.addSubview(button)
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+    }
+    
+    @objc  private func buttonTapped(){
+        let detailViewController = DetailViewController()
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 
     /*
     // MARK: - Navigation

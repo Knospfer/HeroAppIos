@@ -16,6 +16,7 @@
 		EC35A7E32682FDC80011F8F9 /* RootNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7E22682FDC80011F8F9 /* RootNavigationController.swift */; };
 		EC35A7E52682FE030011F8F9 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7E42682FE030011F8F9 /* RootViewController.swift */; };
 		EC35A7E72682FE380011F8F9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7E62682FE380011F8F9 /* MainViewController.swift */; };
+		EC35A7E9268301290011F8F9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7E8268301290011F8F9 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EC35A7E22682FDC80011F8F9 /* RootNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootNavigationController.swift; sourceTree = "<group>"; };
 		EC35A7E42682FE030011F8F9 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		EC35A7E62682FE380011F8F9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		EC35A7E8268301290011F8F9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				EC35A7E22682FDC80011F8F9 /* RootNavigationController.swift */,
 				EC35A7E42682FE030011F8F9 /* RootViewController.swift */,
 				EC35A7E62682FE380011F8F9 /* MainViewController.swift */,
+				EC35A7E8268301290011F8F9 /* DetailViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				EC35A7E72682FE380011F8F9 /* MainViewController.swift in Sources */,
 				EC35A7CE2682F48B0011F8F9 /* AppDelegate.swift in Sources */,
 				EC35A7D02682F48B0011F8F9 /* SceneDelegate.swift in Sources */,
+				EC35A7E9268301290011F8F9 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
