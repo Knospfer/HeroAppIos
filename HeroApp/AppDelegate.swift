@@ -11,13 +11,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
-
+    //questa  è la prima funziona che chiama ios quando lancia l'app -> un pò il nostro main
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        //ritorno true perchè l'app può partire, ma se avessi qualche prob di configuarzione potrei tornare false e chiudere tutto
         return true
     }
 
-    // MARK: UISceneSession Lifecycle
+    //MARK: UISceneSession Lifecycle
+    
+    //con queste funzioni posso switchare ad apple car o ricreare una view quando riavvio l'app in base ad un determitato stato
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
