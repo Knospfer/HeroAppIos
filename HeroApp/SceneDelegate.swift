@@ -22,6 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = rootNavigationController
+        window?.backgroundColor = .white
         window?.makeKeyAndVisible()
     }
 
