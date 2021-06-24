@@ -11,8 +11,62 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addButton()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .white
+        let subView = createUI()
+        view.addSubview(subView)
+        NSLayoutConstraint.activate([
+            subView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            subView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            subView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
+    }
+    
+    private func createUI() -> UIView{
+        let heroImageView = createHeroImageView(imageName: "ironman")
+        let heroNameLabel = createHeroNameLabel(name: "iron\nman")
+        let heroRealNameLabel = createRealNameLabel(name: "tony stark")
+        
+        let uiView = UIView()
+        addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel], subview: uiView)
+        
+        NSLayoutConstraint.activate([
+            heroImageView.topAnchor.constraint(equalTo: uiView.topAnchor),
+            heroImageView.leadingAnchor.constraint(equalTo: uiView.leadingAnchor),
+            heroImageView.trailingAnchor.constraint(equalTo: uiView.trailingAnchor),
+            
+            heroNameLabel.topAnchor.constraint(equalTo: heroImageView.bottomAnchor),
+            heroNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor),
+            
+            heroRealNameLabel.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor),
+            heroNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor)
+        ])
+        
+        return uiView
+    }
+    
+    private func createHeroImageView(imageName: String) -> UIImageView {
+        let image = UIImage(named: imageName)
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .center
+        return imageView
+    }
+    
+    private func createHeroNameLabel(name: String) -> UILabel {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 76)
+        label.text = name
+        label.numberOfLines = 0
+        label.setLineHeight(lineHeight: 74)
+        
+        return label
+    }
+    
+    private func createRealNameLabel(name: String) -> UILabel {
+        let label = UILabel()
+        label.text = name
+        label.font = UIFont.systemFont(ofSize: 30)
+        return label
     }
     
     private func addButton(){
@@ -32,15 +86,12 @@ class MainViewController: UIViewController {
         let detailViewController = DetailViewController()
         navigationController?.pushViewController(detailViewController, animated: true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func addItemsToSubView(items: [UIView], subview: UIView){
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        for item in items {
+            item.translatesAutoresizingMaskIntoConstraints = false
+            subview.addSubview(item)
+        }
     }
-    */
-
 }
