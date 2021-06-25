@@ -9,17 +9,19 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    func setLineHeight(lineHeight: CGFloat) {
+    func setLineHeightBasedOn(fontSize: CGFloat) {
         guard let text = self.text else { return }
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = lineHeight
-        paragraphStyle.maximumLineHeight = lineHeight
+        paragraphStyle.minimumLineHeight = fontSize * 0.76 //58
+        paragraphStyle.maximumLineHeight = fontSize * 0.76//58
+        
         self.attributedText = NSAttributedString(
             string: text,
             attributes: [
-                .paragraphStyle : paragraphStyle
+                .paragraphStyle : paragraphStyle,
+                .baselineOffset: -fontSize * 0.22, //17
             ]
         )
+        
     }
-    
 }

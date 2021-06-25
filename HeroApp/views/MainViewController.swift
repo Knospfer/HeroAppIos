@@ -37,9 +37,12 @@ class MainViewController: UIViewController {
             
             heroNameLabel.topAnchor.constraint(equalTo: heroImageView.bottomAnchor),
             heroNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor),
+            heroNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor),
+            
             
             heroRealNameLabel.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor),
-            heroNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor)
+            heroRealNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 3.8),
+            heroRealNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor)
         ])
         
         return uiView
@@ -54,11 +57,11 @@ class MainViewController: UIViewController {
     
     private func createHeroNameLabel(name: String) -> UILabel {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 76)
         label.text = name
-        label.numberOfLines = 0
-        label.setLineHeight(lineHeight: 74)
-        
+        label.numberOfLines = 2
+        label.font = UIFont.boldSystemFont(ofSize: 76)
+        label.setLineHeightBasedOn(fontSize: 76)
+            
         return label
     }
     
