@@ -30,19 +30,23 @@ class MainViewController: UIViewController {
         let uiView = UIView()
         addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel], subview: uiView)
         
+        heroNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
+        heroRealNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
+        
         NSLayoutConstraint.activate([
             heroImageView.topAnchor.constraint(equalTo: uiView.topAnchor),
             heroImageView.leadingAnchor.constraint(equalTo: uiView.leadingAnchor),
             heroImageView.trailingAnchor.constraint(equalTo: uiView.trailingAnchor),
             
             heroNameLabel.topAnchor.constraint(equalTo: heroImageView.bottomAnchor),
-            heroNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor),
-            heroNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor),
+            heroNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 40),
+            heroNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: 40),
             
             
-            heroRealNameLabel.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor),
-            heroRealNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 3.8),
-            heroRealNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor)
+            heroRealNameLabel.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor, constant: 24),
+            heroRealNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 43.8),
+            heroRealNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: 40),
+            heroRealNameLabel.bottomAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 24)
         ])
         
         return uiView
@@ -51,7 +55,7 @@ class MainViewController: UIViewController {
     private func createHeroImageView(imageName: String) -> UIImageView {
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image)
-        imageView.contentMode = .center
+        imageView.contentMode = .bottom
         return imageView
     }
     
