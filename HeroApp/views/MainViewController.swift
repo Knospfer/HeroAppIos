@@ -8,6 +8,8 @@
 import UIKit
 
 class MainViewController: UIViewController {
+    
+    let customOrange = UIColor(red: 254/255, green: 154/255, blue: 50/255, alpha: 1)//226 236 17
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,7 +20,7 @@ class MainViewController: UIViewController {
             subView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             subView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            subView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            subView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
         ])
     }
     
@@ -26,9 +28,10 @@ class MainViewController: UIViewController {
         let heroImageView = createHeroImageView(imageName: "ironman")
         let heroNameLabel = createHeroNameLabel(name: "iron\nman")
         let heroRealNameLabel = createRealNameLabel(name: "tony stark")
+        let knowMoreButton = createKnowMoreButton()
         
         let uiView = UIView()
-        addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel], subview: uiView)
+        addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel,knowMoreButton], subview: uiView)
         
         heroNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
         heroRealNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
@@ -46,7 +49,11 @@ class MainViewController: UIViewController {
             heroRealNameLabel.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor, constant: 24),
             heroRealNameLabel.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 43.8),
             heroRealNameLabel.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: 40),
-            heroRealNameLabel.bottomAnchor.constraint(equalTo: uiView.bottomAnchor, constant: 24)
+            
+            knowMoreButton.topAnchor.constraint(equalTo: heroRealNameLabel.bottomAnchor, constant: 22),
+            knowMoreButton.leadingAnchor.constraint(equalTo: uiView.leadingAnchor, constant: 44),
+            knowMoreButton.trailingAnchor.constraint(equalTo: uiView.trailingAnchor, constant: 40),
+            knowMoreButton.bottomAnchor.constraint(equalTo: uiView.bottomAnchor)
         ])
         
         return uiView
@@ -76,20 +83,19 @@ class MainViewController: UIViewController {
         return label
     }
     
-    private func addButton(){
+    private func createKnowMoreButton() -> UIButton{
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        button.setTitle("To Detail", for: .normal)
-        button.setTitleColor(.orange, for: .normal)
-        button.backgroundColor = .green
-        view.addSubview(button)
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: view.centerYAnchor)])
+        button.addTarget(self, action: #selector(navigateToDetailView), for: .touchUpInside)
+        button.setTitle("know more", for: .normal)
+        button.contentHorizontalAlignment = .leading
+        button.setTitleColor(customOrange, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 22)
+        
+        return button
     }
     
-    @objc  private func buttonTapped(){
+    @objc  private func navigateToDetailView(){
         let detailViewController = DetailViewController()
         navigationController?.pushViewController(detailViewController, animated: true)
     }
