@@ -15,12 +15,20 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        self.title = "movies"
+        
+        let title = createPageTitle()
         let subView = createUI()
         let backgroundColor = createColoredBackground()
+        
+        view.addSubview(title)
         view.addSubview(backgroundColor)
         view.addSubview(subView)
+        
         NSLayoutConstraint.activate([
+            title.topAnchor.constraint(equalTo: view.topAnchor, constant: 60),
+            title.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            title.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             backgroundColor.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             backgroundColor.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             backgroundColor.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -31,6 +39,15 @@ class MainViewController: UIViewController {
             subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             subView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -50),
         ])
+    }
+    
+    private func createPageTitle() -> UILabel{
+        let title = UILabel()
+        title.text = "movies"
+        title.textAlignment = .center
+        title.font = UIFont.systemFont(ofSize: 34)
+        title.translatesAutoresizingMaskIntoConstraints = false
+        return title
     }
     
     private func createUI() -> UIView{
