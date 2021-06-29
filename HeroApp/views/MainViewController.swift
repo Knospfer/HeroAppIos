@@ -9,14 +9,23 @@ import UIKit
 
 class MainViewController: UIViewController {
     
-    let customOrange = UIColor(red: 254/255, green: 154/255, blue: 50/255, alpha: 1)//226 236 17
+    let customOrange = UIColor(red: 254/255, green: 203/255, blue: 35/255, alpha: 1)
+    let backgroundOrange = UIColor(red: 228/255, green: 154/255, blue: 4/255, alpha: 1)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        self.title = "movies"
         let subView = createUI()
+        let backgroundColor = createColoredBackground()
+        view.addSubview(backgroundColor)
         view.addSubview(subView)
         NSLayoutConstraint.activate([
+            backgroundColor.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundColor.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backgroundColor.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            backgroundColor.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.6),
+            
             subView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             subView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
@@ -31,6 +40,7 @@ class MainViewController: UIViewController {
         let knowMoreButton = createKnowMoreButton()
         
         let uiView = UIView()
+        uiView.translatesAutoresizingMaskIntoConstraints = false
         addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel,knowMoreButton], subview: uiView)
         
         heroNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
@@ -59,33 +69,49 @@ class MainViewController: UIViewController {
         return uiView
     }
     
+    private func createColoredBackground() -> UIView {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = backgroundOrange
+        view.layer.cornerRadius = 50
+        view.layer.shadowColor = UIColor.black.cgColor
+        view.layer.shadowOpacity = 0.1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 10
+        
+        return view
+    }
+    
     private func createHeroImageView(imageName: String) -> UIImageView {
         let image = UIImage(named: imageName)
         let imageView = UIImageView(image: image)
         imageView.contentMode = .bottom
+        
         return imageView
     }
     
     private func createHeroNameLabel(name: String) -> UILabel {
         let label = UILabel()
+        label.textColor = .white
         label.text = name
         label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 76)
         label.setLineHeightBasedOn(fontSize: 76)
-            
+        
         return label
     }
     
     private func createRealNameLabel(name: String) -> UILabel {
         let label = UILabel()
+        label.textColor = .white
         label.text = name
         label.font = UIFont.systemFont(ofSize: 30)
+        
         return label
     }
     
     private func createKnowMoreButton() -> UIButton{
         let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(navigateToDetailView), for: .touchUpInside)
         button.setTitle("know more", for: .normal)
         button.contentHorizontalAlignment = .leading

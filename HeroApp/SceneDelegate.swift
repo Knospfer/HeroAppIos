@@ -54,14 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     private func setUpRootView() -> RootNavigationController {
-        let rootViewController = RootViewController()
         let rootNavigationController = RootNavigationController()
-
-        rootViewController.title = "Root"
-        rootNavigationController.title = "RootNav"
-        
         let mainViewController = MainViewController()
-        mainViewController.title = "Main"
         
         rootNavigationController.viewControllers = [mainViewController]
         
