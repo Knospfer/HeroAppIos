@@ -51,14 +51,14 @@ class MainViewController: UIViewController {
     }
     
     private func createUI() -> UIView{
-        let heroImageView = createHeroImageView(imageName: "ironman")
-        let heroNameLabel = createHeroNameLabel(name: "iron\nman")
-        let heroRealNameLabel = createRealNameLabel(name: "tony stark")
+        let heroImageView = HeroViewBuilder.createHeroImageView(imageName: "ironman")
+        let heroNameLabel = HeroViewBuilder.createHeroNameLabel(name: "iron\nman")
+        let heroRealNameLabel = HeroViewBuilder.createRealNameLabel(name: "tony stark")
         let knowMoreButton = createKnowMoreButton()
         
         let uiView = UIView()
         uiView.translatesAutoresizingMaskIntoConstraints = false
-        addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel,knowMoreButton], subview: uiView)
+        HeroViewBuilder.addItemsToSubView(items: [heroImageView,heroNameLabel,heroRealNameLabel,knowMoreButton], subview: uiView)
         
         heroNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
         heroRealNameLabel.setContentHuggingPriority(UILayoutPriority(1000), for: .vertical)
@@ -99,34 +99,6 @@ class MainViewController: UIViewController {
         return view
     }
     
-    private func createHeroImageView(imageName: String) -> UIImageView {
-        let image = UIImage(named: imageName)
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .bottom
-        
-        return imageView
-    }
-    
-    private func createHeroNameLabel(name: String) -> UILabel {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = name
-        label.numberOfLines = 2
-        label.font = UIFont.boldSystemFont(ofSize: 76)
-        label.setLineHeightBasedOn(fontSize: 76)
-        
-        return label
-    }
-    
-    private func createRealNameLabel(name: String) -> UILabel {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = name
-        label.font = UIFont.systemFont(ofSize: 30)
-        
-        return label
-    }
-    
     private func createKnowMoreButton() -> UIButton{
         let button = UIButton()
         button.addTarget(self, action: #selector(navigateToDetailView), for: .touchUpInside)
@@ -141,13 +113,5 @@ class MainViewController: UIViewController {
     @objc  private func navigateToDetailView(){
         let detailViewController = DetailViewController()
         navigationController?.pushViewController(detailViewController, animated: true)
-    }
-    
-    private func addItemsToSubView(items: [UIView], subview: UIView){
-        subview.translatesAutoresizingMaskIntoConstraints = false
-        for item in items {
-            item.translatesAutoresizingMaskIntoConstraints = false
-            subview.addSubview(item)
-        }
     }
 }
