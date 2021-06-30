@@ -55,9 +55,6 @@ class DetailViewController: UIViewController {
         let imageView = UIImageView(image: image)
         
         imageView.contentMode = .scaleAspectFit
-        
-        
-        
         imageView.heightAnchor.constraint(equalToConstant: 28).isActive = true
         
         return imageView
