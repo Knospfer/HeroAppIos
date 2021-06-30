@@ -17,9 +17,9 @@ struct HeroViewBuilder {
         return imageView
     }
     
-    static func createHeroNameLabel(name: String) -> UILabel {
+    static func createHeroNameLabel(name: String, color: UIColor = .white) -> UILabel {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = color
         label.text = name
         label.numberOfLines = 2
         label.font = UIFont.boldSystemFont(ofSize: 76)
@@ -28,9 +28,9 @@ struct HeroViewBuilder {
         return label
     }
     
-    static func createRealNameLabel(name: String) -> UILabel {
+    static func createRealNameLabel(name: String, color: UIColor = .white) -> UILabel {
         let label = UILabel()
-        label.textColor = .white
+        label.textColor = color
         label.text = name
         label.font = UIFont.systemFont(ofSize: 30)
         
