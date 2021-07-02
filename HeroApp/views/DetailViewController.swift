@@ -9,6 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    let dividerGrey = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -51,8 +53,9 @@ class DetailViewController: UIViewController {
         let heroNameLabel = HeroViewBuilder.createHeroNameLabel(name: "iron\nman", color: .black)
         let secondaryRow = createHeroRealNameAndMarvelLogoRow()
         let startSeparator = createSeparator()
+        let descriptionLabel = createDescriptionLabel()
         
-        HeroViewBuilder.addItemsToSubView(items: [heroNameLabel,secondaryRow,startSeparator], subview: paddedSubView)
+        HeroViewBuilder.addItemsToSubView(items: [heroNameLabel,secondaryRow,startSeparator, descriptionLabel], subview: paddedSubView)
         
         NSLayoutConstraint.activate([
             heroNameLabel.topAnchor.constraint(equalTo: paddedSubView.topAnchor),
@@ -65,7 +68,13 @@ class DetailViewController: UIViewController {
             
             startSeparator.topAnchor.constraint(equalTo: secondaryRow.bottomAnchor, constant: 20),
             startSeparator.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
-            startSeparator.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor)
+            startSeparator.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: startSeparator.bottomAnchor, constant: 20),
+            descriptionLabel.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
+            
+            
         ])
         
         return paddedSubView
@@ -99,9 +108,21 @@ class DetailViewController: UIViewController {
     private func createSeparator() -> UIView {
         let separator = UIView()
         separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
-        separator.backgroundColor = .gray
+        separator.backgroundColor = dividerGrey
         
         return separator
+    }
+    
+    private func createDescriptionLabel() -> UILabel {
+        let descriptionLabel = UILabel()
+        
+        descriptionLabel.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        descriptionLabel.numberOfLines = 0
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
+        
+        descriptionLabel.textColor = .gray
+        
+        return descriptionLabel
     }
     
 }
