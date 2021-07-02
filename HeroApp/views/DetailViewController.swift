@@ -13,7 +13,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         let subView = createUI()
-        
         view.addSubview(subView)
         
         NSLayoutConstraint.activate([
@@ -27,27 +26,49 @@ class DetailViewController: UIViewController {
     
     private func createUI() -> UIView{
         let subView = UIView()
+        let paddedSubView = createPaddedSubView()
         let imageView = HeroViewBuilder.createHeroImageView(imageName: "ironman")
-        let heroNameLabel = HeroViewBuilder.createHeroNameLabel(name: "iron\nman", color: .black)
-        let secondaryRow = createHeroRealNameAndMarvelLogoRow()
-        
-        HeroViewBuilder.addItemsToSubView(items: [imageView,heroNameLabel,secondaryRow ], subview: subView)
+       
+        HeroViewBuilder.addItemsToSubView(items: [imageView,paddedSubView], subview: subView)
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: subView.topAnchor, constant: 20),
             imageView.leadingAnchor.constraint(equalTo: subView.leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: subView.trailingAnchor),
             
-            heroNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            heroNameLabel.leadingAnchor.constraint(equalTo: subView.leadingAnchor, constant: 40),
-            heroNameLabel.trailingAnchor.constraint(equalTo: subView.trailingAnchor, constant: 40),
+            paddedSubView.widthAnchor.constraint(equalTo: subView.widthAnchor, multiplier: 0.8),
+            paddedSubView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             
-            secondaryRow.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor,constant: 24),
-            secondaryRow.leadingAnchor.constraint(equalTo: subView.leadingAnchor, constant: 43.8),
-            secondaryRow.trailingAnchor.constraint(equalTo: subView.trailingAnchor, constant: 40),
+            paddedSubView.centerYAnchor.constraint(equalTo: subView.centerYAnchor),
+            paddedSubView.centerXAnchor.constraint(equalTo: subView.centerXAnchor)
         ])
         
         return subView
+    }
+    
+    private func createPaddedSubView() -> UIView {
+        let paddedSubView = UIView()
+        let heroNameLabel = HeroViewBuilder.createHeroNameLabel(name: "iron\nman", color: .black)
+        let secondaryRow = createHeroRealNameAndMarvelLogoRow()
+        let startSeparator = createSeparator()
+        
+        HeroViewBuilder.addItemsToSubView(items: [heroNameLabel,secondaryRow,startSeparator], subview: paddedSubView)
+        
+        NSLayoutConstraint.activate([
+            heroNameLabel.topAnchor.constraint(equalTo: paddedSubView.topAnchor),
+            heroNameLabel.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            heroNameLabel.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
+            
+            secondaryRow.topAnchor.constraint(equalTo: heroNameLabel.bottomAnchor,constant: 24),
+            secondaryRow.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            secondaryRow.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
+            
+            startSeparator.topAnchor.constraint(equalTo: secondaryRow.bottomAnchor, constant: 20),
+            startSeparator.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            startSeparator.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor)
+        ])
+        
+        return paddedSubView
     }
     
     private func createMarvelLogo() -> UIImageView{
@@ -74,5 +95,12 @@ class DetailViewController: UIViewController {
         return stackView
     }
     
+    private func createSeparator() -> UIView {
+        let separator = UIView()
+        separator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+        separator.backgroundColor = .gray
+        
+        return separator
+    }
     
 }
