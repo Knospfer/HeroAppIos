@@ -77,6 +77,7 @@ class DetailViewController: UIViewController {
         
         imageView.contentMode = .scaleAspectFit
         imageView.heightAnchor.constraint(equalToConstant: 28).isActive = true
+        imageView.widthAnchor.constraint(equalToConstant: 74).isActive = true
         
         return imageView
     }
