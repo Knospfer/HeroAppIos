@@ -19,7 +19,7 @@ class DetailViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             subView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
-            subView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            subView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             subView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
@@ -27,20 +27,16 @@ class DetailViewController: UIViewController {
     }
     
     private func createUI() -> UIView{
-        let subView = UIView()
+        let subView = UIScrollView()
         let paddedSubView = createPaddedSubView()
-        let imageView = HeroViewBuilder.createHeroImageView(imageName: "ironman")
+        
        
-        HeroViewBuilder.addItemsToSubView(items: [imageView,paddedSubView], subview: subView)
+        HeroViewBuilder.addItemsToSubView(items: [paddedSubView], subview: subView)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: subView.topAnchor, constant: 20),
-            imageView.leadingAnchor.constraint(equalTo: subView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: subView.trailingAnchor),
-            
             paddedSubView.widthAnchor.constraint(equalTo: subView.widthAnchor, multiplier: 0.8),
-            paddedSubView.topAnchor.constraint(equalTo: imageView.bottomAnchor),
-            
+            paddedSubView.topAnchor.constraint(equalTo: subView.topAnchor),
+            paddedSubView.bottomAnchor.constraint(equalTo: subView.bottomAnchor),
             paddedSubView.centerYAnchor.constraint(equalTo: subView.centerYAnchor),
             paddedSubView.centerXAnchor.constraint(equalTo: subView.centerXAnchor)
         ])
@@ -51,14 +47,23 @@ class DetailViewController: UIViewController {
     private func createPaddedSubView() -> UIView {
         let paddedSubView = UIView()
         let heroNameLabel = HeroViewBuilder.createHeroNameLabel(name: "iron\nman", color: .black)
+        let imageView = HeroViewBuilder.createHeroImageView(imageName: "ironman")
         let secondaryRow = createHeroRealNameAndMarvelLogoRow()
         let startSeparator = createSeparator()
         let descriptionLabel = createDescriptionLabel()
+        let endSeparator = createSeparator()
+        let movieCards = createMovieRow()
         
-        HeroViewBuilder.addItemsToSubView(items: [heroNameLabel,secondaryRow,startSeparator, descriptionLabel], subview: paddedSubView)
+        let items = [imageView,heroNameLabel,secondaryRow,startSeparator, descriptionLabel, endSeparator, movieCards]
+        
+        HeroViewBuilder.addItemsToSubView(items: items, subview: paddedSubView)
         
         NSLayoutConstraint.activate([
-            heroNameLabel.topAnchor.constraint(equalTo: paddedSubView.topAnchor),
+            imageView.topAnchor.constraint(equalTo: paddedSubView.topAnchor, constant: 20),
+            imageView.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
+            
+            heroNameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
             heroNameLabel.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
             heroNameLabel.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
             
@@ -74,7 +79,13 @@ class DetailViewController: UIViewController {
             descriptionLabel.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
             
+            endSeparator.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 20),
+            endSeparator.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            endSeparator.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
             
+            movieCards.topAnchor.constraint(equalTo: endSeparator.bottomAnchor, constant: 20),
+            movieCards.leadingAnchor.constraint(equalTo: paddedSubView.leadingAnchor),
+            movieCards.trailingAnchor.constraint(equalTo: paddedSubView.trailingAnchor),
         ])
         
         return paddedSubView
@@ -125,4 +136,27 @@ class DetailViewController: UIViewController {
         return descriptionLabel
     }
     
+    private func createMovieRow() -> UIStackView{
+        let ironManOne = createMovieCard(movieName: "ironman1")
+        let ironManTwo = createMovieCard(movieName: "ironman2")
+        
+        ironManOne.translatesAutoresizingMaskIntoConstraints = false
+        ironManTwo.translatesAutoresizingMaskIntoConstraints = false
+        
+        let stackView = UIStackView(arrangedSubviews: [ironManOne, ironManTwo])
+        stackView.distribution = .fillEqually
+        
+        return stackView
+    }
+    
+    private func createMovieCard(movieName: String) -> UIImageView {
+        let image = UIImage(named: movieName)
+        let imageView = UIImageView(image: image)
+        
+        imageView.contentMode = .scaleAspectFit
+        
+        imageView.layer.cornerRadius = 10
+        
+        return imageView
+    }
 }
