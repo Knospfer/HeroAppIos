@@ -7,15 +7,20 @@
 
 import UIKit
 
+protocol NetworkService {
+  func fetch() -> String
+}
+
 class DetailViewController: UIViewController {
     
     let dividerGrey = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
+  var networkService: NetworkService
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         let subView = createUI()
-        view.addSubview(subView)
+      view.addSubview(subView)
         
         NSLayoutConstraint.activate([
             subView.topAnchor.constraint(equalTo: view.topAnchor, constant: 40),
@@ -23,8 +28,19 @@ class DetailViewController: UIViewController {
             subView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             subView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
-        
+
+      (self.view as! DetailView).userDidTapActionButton = { [weak self] in
+        (self?.view as! DetailView).viewModel?.heroName = self?.networkService.fetch()
+
+      }
     }
+
+  override func loadView() {
+    let detailView = DetailView()
+    detailView.model = DetailViewModel(heroName: "IronMan")
+    self.view = detailView
+
+  }
     
     private func createUI() -> UIView{
         let subView = UIScrollView()

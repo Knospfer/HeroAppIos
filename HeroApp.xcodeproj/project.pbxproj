@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46277A31269DF83600D9CBA7 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46277A30269DF83600D9CBA7 /* DetailView.swift */; };
 		EC35A7CE2682F48B0011F8F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7CD2682F48B0011F8F9 /* AppDelegate.swift */; };
 		EC35A7D02682F48B0011F8F9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7CF2682F48B0011F8F9 /* SceneDelegate.swift */; };
 		EC35A7D22682F48B0011F8F9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC35A7D12682F48B0011F8F9 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46277A30269DF83600D9CBA7 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		EC35A7CA2682F48B0011F8F9 /* HeroApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeroApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC35A7CD2682F48B0011F8F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC35A7CF2682F48B0011F8F9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				EC35A7E42682FE030011F8F9 /* RootViewController.swift */,
 				EC35A7E62682FE380011F8F9 /* MainViewController.swift */,
 				EC35A7E8268301290011F8F9 /* DetailViewController.swift */,
+				46277A30269DF83600D9CBA7 /* DetailView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -187,6 +190,7 @@
 				EC35A7D22682F48B0011F8F9 /* ViewController.swift in Sources */,
 				EC5D3658268C2DD10055F682 /* HeroViewBuilder.swift in Sources */,
 				EC35A7E32682FDC80011F8F9 /* RootNavigationController.swift in Sources */,
+				46277A31269DF83600D9CBA7 /* DetailView.swift in Sources */,
 				EC35A7E72682FE380011F8F9 /* MainViewController.swift in Sources */,
 				EC35A7CE2682F48B0011F8F9 /* AppDelegate.swift in Sources */,
 				EC35A7D02682F48B0011F8F9 /* SceneDelegate.swift in Sources */,
